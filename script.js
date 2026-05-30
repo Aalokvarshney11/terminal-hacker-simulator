@@ -2,16 +2,18 @@ const attemptsText = document.getElementById("attempts");
 const output = document.getElementById("output");
 const command = document.getElementById("command");
 
-const passwords = [
-    "shadow",
-    "matrix",
-    "cyber",
-    "phantom",
-    "hacker"
-];
+let level = 1;
 
-const password =
-    passwords[Math.floor(Math.random() * passwords.length)];
+const levelPasswords = {
+    1: ["shadow", "cyber"],
+    2: ["phantom", "matrix"],
+    3: ["hacker", "network"]
+};
+
+let password =
+    levelPasswords[level][
+        Math.floor(Math.random() * levelPasswords[level].length)
+    ];
 
 let attempts = 3;
 let gameOver = false;
@@ -31,6 +33,7 @@ command.addEventListener("keydown", function (e) {
                 "\ndecrypt" +
                 "\nhint" +
                 "\nstatus" +
+                "\nlevel" +
                 "\naccess [password]";
 
         }
@@ -64,7 +67,15 @@ command.addEventListener("keydown", function (e) {
 
             output.innerHTML +=
                 "\nAttempts Left: " + attempts +
-                "\nSecurity Level: MEDIUM";
+                "\nSecurity Level: MEDIUM" +
+                "\nCurrent Level: " + level;
+
+        }
+
+        else if (text === "level") {
+
+            output.innerHTML +=
+                "\nCurrent Level: " + level;
 
         }
 
@@ -74,16 +85,36 @@ command.addEventListener("keydown", function (e) {
 
             if (guess === password) {
 
-                output.innerHTML +=
-                    "\n\nACCESS GRANTED" +
-                    "\nSYSTEM BREACHED" +
-                    "\nMISSION COMPLETE";
+                output.innerHTML += "\n\nACCESS GRANTED";
 
-                gameOver = true;
+                if (level < 3) {
+
+                    level++;
+                    attempts = 3;
+                    attemptsText.textContent = attempts;
+
+                    password =
+                        levelPasswords[level][
+                            Math.floor(Math.random() * levelPasswords[level].length)
+                        ];
+
+                    output.innerHTML +=
+                        "\nLEVEL COMPLETE" +
+                        "\nLoading Level " + level + "...";
+
+                } else {
+
+                    output.innerHTML +=
+                        "\n\nMISSION COMPLETE" +
+                        "\nTOP SECRET FILE RETRIEVED";
+
+                    gameOver = true;
+                }
 
             } else {
 
                 attempts--;
+                attemptsText.textContent = attempts;
 
                 output.innerHTML +=
                     "\nACCESS DENIED" +
