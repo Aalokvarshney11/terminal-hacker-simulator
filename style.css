@@ -1,0 +1,37 @@
+body{
+    background:black;
+    color:#00ff00;
+    font-family:monospace;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    margin:0;
+}
+
+#terminal{
+    width:700px;
+    border:2px solid #00ff00;
+    padding:20px;
+    box-shadow:0 0 25px #00ff00;
+}
+
+#output{
+    height:300px;
+    overflow-y:auto;
+    white-space:pre-line;
+    margin-bottom:15px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    background:black;
+    color:#00ff00;
+    border:1px solid #00ff00;
+    font-family:monospace;
+}
+#stats{
+    margin-bottom:15px;
+    font-size:18px;
+}
