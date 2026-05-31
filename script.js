@@ -79,7 +79,7 @@ let timerStarted = false;
 
   // TYPE WRITER ANIMATION
 
-function typeLine(text, speed = 50) {
+function typeLine(text, speed = 25) {
     return new Promise(resolve => {
         let i = 0;
         let line = document.createElement("div");
@@ -152,11 +152,15 @@ function startTimer() {
         timeLeft--;
         timerText.textContent = timeLeft;
 
-        if (timeLeft <= 0) {
-            output.innerHTML += "\n\n☠ SIGNAL LOST... SYSTEM OVERRIDDEN ☠";
-            output.innerHTML += "\n>>> OPERATION FAILED (TIME OUT)";
+       if (timeLeft <= 0) {
             gameOver = true;
             clearInterval(timer);
+
+            output.innerHTML += "<div>☠ SIGNAL LOST... SYSTEM OVERRIDDEN ☠</div>";
+            output.innerHTML += "<div>>> OPERATION FAILED (TIME OUT)</div>";
+
+            output.scrollTop = output.scrollHeight;
+
             setTimeout(resetGame, 3000);
         }
 
