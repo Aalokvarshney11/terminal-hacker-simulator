@@ -1,8 +1,67 @@
+const root = document.getElementById("root");
+
+document.body.style.background = "black";
+document.body.style.color = "#00ff00";
+document.body.style.fontFamily = "monospace";
+document.body.style.display = "flex";
+document.body.style.justifyContent = "center";
+document.body.style.alignItems = "center";
+document.body.style.height = "100vh";
+document.body.style.margin = "0";
+
+const terminal = document.createElement("div");
+terminal.style.width = "700px";
+terminal.style.border = "2px solid #00ff00";
+terminal.style.padding = "20px";
+terminal.style.boxShadow = "0 0 25px #00ff00";
+terminal.style.fontSize = "20px";
+
+const stats = document.createElement("div");
+stats.style.marginBottom = "15px";
+stats.style.fontSize = "22px";
+
+stats.innerHTML = `
+Attempts: <span id="attempts"></span>
+|
+Level: <span id="levelDisplay"></span>
+|
+Time: <span id="timer"></span>s
+`;
+
+const title = document.createElement("h2");
+title.textContent = "TERMINAL ACCESS";
+
+const output = document.createElement("div");
+output.id = "output";
+output.style.height = "300px";
+output.style.overflowY = "auto";
+output.style.whiteSpace = "pre-line";
+output.style.marginBottom = "15px";
+
+const command = document.createElement("input");
+command.type = "text";
+command.id = "command";
+command.placeholder = "Enter command...";
+command.autocomplete = "off";
+
+command.style.width = "100%";
+command.style.padding = "10px";
+command.style.background = "black";
+command.style.color = "#00ff00";
+command.style.border = "1px solid #00ff00";
+command.style.fontFamily = "monospace";
+command.style.fontSize = "20px";
+
+terminal.appendChild(stats);
+terminal.appendChild(title);
+terminal.appendChild(output);
+terminal.appendChild(command);
+
+root.appendChild(terminal);
+
 const timerText = document.getElementById("timer");
 const levelDisplay = document.getElementById("levelDisplay");
 const attemptsText = document.getElementById("attempts");
-const output = document.getElementById("output");
-const command = document.getElementById("command");
 
 let level = 1;
 
