@@ -18,10 +18,8 @@ let gameOver = false;
 let timeLeft = 60;
 let timerStarted = false;
 
+  // TYPE WRITER ANIMATION
 
-/* =========================
-   TYPE WRITER ANIMATION
-========================= */
 function typeLine(text, speed = 50) {
     return new Promise(resolve => {
         let i = 0;
@@ -58,11 +56,8 @@ function resetGame() {
     startGame();
 }
 
+//INIT GAME FLOW
 
-
-/* =========================
-   INIT GAME FLOW
-========================= */
 async function startGame() {
     await typeLine("Initializing secure terminal...");
     await typeLine("Bypassing firewall...");
@@ -74,9 +69,9 @@ async function startGame() {
     setPassword();
 }
 
-/* =========================
-   PASSWORD SET
-========================= */
+
+//   PASSWORD SET
+
 function setPassword() {
     password =
         levelPasswords[level][
@@ -84,9 +79,9 @@ function setPassword() {
         ];
 }
 
-/* =========================
-   TIMER
-========================= */
+
+ //  TIMER
+
 function startTimer() {
     const timer = setInterval(() => {
 
@@ -109,18 +104,18 @@ function startTimer() {
     }, 1000);
 }
 
-/* =========================
-   UI INIT AFTER LOAD
-========================= */
+
+ //  UI INIT AFTER LOAD
+
 levelDisplay.textContent = "";
 attemptsText.textContent = "";
 timerText.textContent = "";
 
 startGame();
 
-/* =========================
-   INPUT HANDLER
-========================= */
+
+ //  INPUT HANDLER
+
 command.addEventListener("keydown", async function (e) {
 
     if (e.key === "Enter" && !gameOver) {
