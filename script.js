@@ -176,6 +176,9 @@ command.addEventListener("keydown", async function (e) {
                     level++;
                     attempts = 3;
                     timeLeft = 60;
+                    levelDisplay.textContent = level;
+                    attemptsText.textContent = attempts;
+                    timerText.textContent = timeLeft;
 
                     setPassword();
 
@@ -199,11 +202,27 @@ command.addEventListener("keydown", async function (e) {
 
                 await typeLine("ACCESS DENIED ❌");
                 await typeLine("TRACE DETECTED...");
+                await typeLine(
+                    "HINT: " +
+                    password[0].toUpperCase() +
+                    "_".repeat(password.length - 1)
+                );
 
-                if (attempts === 0) {
+                if (attempts === 1) {
+                    await typeLine(
+                    "FINAL HINT: " +
+                    password.slice(0, 2).toUpperCase() +
+                    "_".repeat(password.length - 2)
+                );
+            }       
+            if (attempts === 0) {
                     await typeLine("SYSTEM LOCKED 🔒");
                     await typeLine("MISSION FAILED ☠");
+                    await typeLine("PASSWORD WAS: " + password.toUpperCase());
+
                     gameOver = true;
+
+                    setTimeout(resetGame, 3000);
                 }
             }
         }
